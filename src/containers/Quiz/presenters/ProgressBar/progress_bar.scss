@@ -1,1 +1,22 @@
-.progress_bar {}
+.progress_bar {
+  display: flex;
+  align-items: center;
+
+  &__text {
+    margin-right: 10px;
+  }
+
+  &__meter {
+    flex: 1;
+    border-radius: 7px;
+    height: 15px;
+    border: 1px solid #979797;
+    overflow: hidden;
+
+    &__fill {
+      background: #01D4FB;
+      height: 100%;
+      transition: 0.8s ease;
+    }
+  }
+}

@@ -3,7 +3,13 @@ import React from 'react'
 
 export default ({ answeredQuestions, totalQuestions }) => (
   <div className="progress_bar">
-    <div>{answeredQuestions} / {totalQuestions}</div>
+    <div className="progress_bar__text">
+      Progress: {answeredQuestions + 1}/{totalQuestions}
+    </div>
+    <div className="progress_bar__meter">
+      <div className="progress_bar__meter__fill" style={{width: (answeredQuestions/totalQuestions * 100) + '%'}}>
+      </div>
+    </div>
   </div>
 )
 
