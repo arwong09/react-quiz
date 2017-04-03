@@ -9586,7 +9586,7 @@ exports = module.exports = __webpack_require__(84)();
 
 
 // module
-exports.push([module.i, ".hidden {\n  display: none; }\n\nhtml, body {\n  margin: 0;\n  width: 100%;\n  height: 100%;\n  font-family: \"Proxima Nova\", \"Open Sans\", \"Helvetica\", sans-serif;\n  overflow-x: hidden; }\n\n* {\n  box-sizing: border-box !important; }\n\n.align-center {\n  text-align: center; }\n\n.button--submit {\n  border: 1px solid #979797;\n  border-radius: 3px;\n  padding: 15px;\n  cursor: pointer;\n  display: inline-block;\n  background: #01D4FB;\n  color: #fff;\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);\n  font-size: 18px; }\n  .button--submit:hover {\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);\n    background: #1CDCFF;\n    transition: 0.1s; }\n  .button--submit:active {\n    box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.1);\n    background: #01D4FB; }\n", ""]);
+exports.push([module.i, ".hidden {\n  display: none; }\n\nhtml, body {\n  margin: 0;\n  width: 100%;\n  height: 100%;\n  font-family: \"Proxima Nova\", \"Open Sans\", \"Helvetica\", sans-serif;\n  overflow-x: hidden; }\n\n* {\n  box-sizing: border-box !important; }\n\n.align-center {\n  text-align: center; }\n\n.button--submit {\n  border: 1px solid #979797;\n  border-radius: 3px;\n  padding: 15px 30px;\n  cursor: pointer;\n  display: inline-block;\n  background: #01D4FB;\n  color: #fff;\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);\n  font-size: 18px;\n  margin-top: 15px; }\n  .button--submit:hover {\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);\n    background: #1CDCFF;\n    transition: 0.15s; }\n  .button--submit:active {\n    box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.1);\n    background: #01D4FB; }\n  .button--submit.disabled {\n    opacity: 0.5;\n    cursor: not-allowed;\n    box-shadow: none; }\n    .button--submit.disabled:hover {\n      background: #01D4FB;\n      box-shadow: none; }\n", ""]);
 
 // exports
 
@@ -22743,6 +22743,10 @@ var _store2 = _interopRequireDefault(_store);
 
 var _actions = __webpack_require__(183);
 
+var _QuestionChoice = __webpack_require__(218);
+
+var _QuestionChoice2 = _interopRequireDefault(_QuestionChoice);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22767,8 +22771,8 @@ var Question = function (_Component) {
 
   _createClass(Question, [{
     key: 'handleSelect',
-    value: function handleSelect(e) {
-      this.setState({ selected: e.target.value });
+    value: function handleSelect(value) {
+      this.setState({ selected: value });
     }
   }, {
     key: 'handleSubmit',
@@ -22777,6 +22781,7 @@ var Question = function (_Component) {
         selected: this.state.selected,
         question: this.props.data
       }));
+      this.setState({ selected: null });
     }
   }, {
     key: 'render',
@@ -22791,22 +22796,38 @@ var Question = function (_Component) {
           null,
           this.props.data.text
         ),
-        _react2.default.createElement(
+        this.state.selected ? _react2.default.createElement(
           'div',
           { className: 'question__choices' },
           Object.keys(this.props.data.choices).map(function (choice) {
-            return _react2.default.createElement(
-              'label',
-              { className: 'question__choice', key: _this2.props.data.id + '-' + choice },
-              _react2.default.createElement('input', { type: 'radio', name: 'question', value: choice, onChange: _this2.handleSelect }),
-              _this2.props.data.choices[choice]
-            );
-          })
-        ),
-        _react2.default.createElement(
+            return _react2.default.createElement(_QuestionChoice2.default, {
+              className: _this2.state.selected == choice ? "question__choice--selected" : "question__choice--unselected disabled",
+              text: _this2.props.data.choices[choice],
+              value: choice,
+              onClick: _this2.handleSelect,
+              key: _this2.props.data.id + '-' + choice });
+          }),
+          _react2.default.createElement(
+            'div',
+            { className: 'button--submit', onClick: this.handleSubmit },
+            'Submit'
+          )
+        ) : _react2.default.createElement(
           'div',
-          { className: 'button--submit', onClick: this.handleSubmit },
-          'Submit'
+          { className: 'question__choices' },
+          Object.keys(this.props.data.choices).map(function (choice) {
+            return _react2.default.createElement(_QuestionChoice2.default, {
+              className: 'question__choice--unselected',
+              text: _this2.props.data.choices[choice],
+              value: choice,
+              onClick: _this2.handleSelect,
+              key: _this2.props.data.id + '-' + choice });
+          }),
+          _react2.default.createElement(
+            'div',
+            { className: 'button--submit disabled' },
+            'Submit'
+          )
         )
       );
     }
@@ -22924,7 +22945,7 @@ exports = module.exports = __webpack_require__(84)();
 
 
 // module
-exports.push([module.i, ".hidden {\n  display: none; }\n\n.progress_bar {\n  display: flex;\n  align-items: center;\n  margin-bottom: 15px; }\n  .progress_bar__text {\n    margin-right: 10px;\n    font-size: 14px; }\n  .progress_bar__meter {\n    flex: 1;\n    border-radius: 7px;\n    height: 15px;\n    border: 1px solid #979797;\n    overflow: hidden; }\n    .progress_bar__meter__fill {\n      background: #01D4FB;\n      height: 100%;\n      transition: 0.8s ease; }\n", ""]);
+exports.push([module.i, ".hidden {\n  display: none; }\n\n.progress_bar {\n  display: flex;\n  align-items: center;\n  margin-bottom: 15px; }\n  .progress_bar__text {\n    margin-right: 10px;\n    font-size: 14px; }\n  .progress_bar__meter {\n    flex: 1;\n    border-radius: 7px;\n    height: 15px;\n    border: 1px solid #979797;\n    overflow: hidden; }\n    .progress_bar__meter__fill {\n      background: linear-gradient(90deg, #01D4FB, #1CDCFF);\n      height: 100%;\n      transition: 0.8s ease; }\n", ""]);
 
 // exports
 
@@ -22938,7 +22959,7 @@ exports = module.exports = __webpack_require__(84)();
 
 
 // module
-exports.push([module.i, ".question__choice {\n  border-radius: 3px;\n  border: 1px solid #979797;\n  padding: 15px;\n  display: block;\n  cursor: pointer;\n  margin-bottom: 5px; }\n\n.question__choices {\n  width: 50%; }\n", ""]);
+exports.push([module.i, ".question__choices {\n  margin: 20px 0;\n  width: 50%; }\n", ""]);
 
 // exports
 
@@ -23638,6 +23659,114 @@ exports.default = function (_ref) {
     })
   );
 };
+
+/***/ }),
+/* 218 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _question_choice = __webpack_require__(220);
+
+var _question_choice2 = _interopRequireDefault(_question_choice);
+
+var _react = __webpack_require__(81);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var QuestionChoice = function (_Component) {
+  _inherits(QuestionChoice, _Component);
+
+  function QuestionChoice(props) {
+    _classCallCheck(this, QuestionChoice);
+
+    var _this = _possibleConstructorReturn(this, (QuestionChoice.__proto__ || Object.getPrototypeOf(QuestionChoice)).call(this, props));
+
+    _this.handleClick = _this.handleClick.bind(_this);
+    _this.state = { selected: null };
+    return _this;
+  }
+
+  _createClass(QuestionChoice, [{
+    key: 'handleClick',
+    value: function handleClick() {
+      this.props.onClick(this.props.value);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: this.props.className, onClick: this.handleClick },
+        _react2.default.createElement(
+          'div',
+          { className: 'question__choice__letter' },
+          this.props.value + '.'
+        ),
+        this.props.text
+      );
+    }
+  }]);
+
+  return QuestionChoice;
+}(_react.Component);
+
+exports.default = QuestionChoice;
+
+/***/ }),
+/* 219 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(84)();
+// imports
+
+
+// module
+exports.push([module.i, ".question__choice--selected {\n  border-radius: 3px;\n  border: 1px solid #F7D87C;\n  padding: 15px;\n  display: block;\n  cursor: pointer;\n  margin-bottom: 5px;\n  display: flex;\n  align-items: center;\n  background: #F7EBC6;\n  color: #268BD2;\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0px 1px 1px rgba(0, 0, 0, 0.1); }\n\n.question__choice--unselected {\n  border-radius: 3px;\n  border: 1px solid #F7EBC6;\n  padding: 15px;\n  display: block;\n  cursor: pointer;\n  margin-bottom: 5px;\n  display: flex;\n  align-items: center;\n  background: #F7EBC6;\n  color: #C2C0BC;\n  transition: 0.1s; }\n  .question__choice--unselected:hover {\n    color: #979797;\n    border: 1px solid #F7D87C;\n    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1); }\n  .question__choice--unselected.disabled {\n    opacity: 0.5; }\n\n.question__choice__letter {\n  margin-right: 5px; }\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 220 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(219);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(181)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/sass-loader/lib/loader.js!./question_choice.scss", function() {
+			var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/sass-loader/lib/loader.js!./question_choice.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
 
 /***/ })
 /******/ ]);

@@ -18,7 +18,7 @@
     overflow: hidden;
 
     &__fill {
-      background: $blue;
+      background: linear-gradient(90deg, $blue, $blue-hl);
       height: 100%;
       transition: 0.8s ease;
     }

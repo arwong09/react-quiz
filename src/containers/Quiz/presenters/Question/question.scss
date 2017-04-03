@@ -1,14 +1,6 @@
 .question {
-  &__choice {
-    border-radius: 3px;
-    border: 1px solid #979797;
-    padding: 15px;
-    display: block;
-    cursor: pointer;
-    margin-bottom: 5px;
-  }
-
   &__choices {
+    margin: 20px 0;
     width: 50%;
   }
 }
