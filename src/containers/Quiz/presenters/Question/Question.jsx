@@ -26,15 +26,15 @@ export default class Question extends Component {
     return(
       <div className="question">
         <div>{this.props.data.text}</div>
-        <form>
+        <div className="question__choices">
           {Object.keys(this.props.data.choices).map((choice) => (
-            <label key={this.props.data.id + '-' + choice}>
-              {this.props.data.choices[choice]}
+            <label className="question__choice" key={this.props.data.id + '-' + choice}>
               <input type="radio" name="question" value={choice} onChange={this.handleSelect} />
+              {this.props.data.choices[choice]}
             </label>
           ))}
-        </form>
-        <div className="submit_button" onClick={this.handleSubmit}>
+        </div>
+        <div className="button--submit" onClick={this.handleSubmit}>
           Submit
         </div>
       </div>

@@ -9586,7 +9586,7 @@ exports = module.exports = __webpack_require__(84)();
 
 
 // module
-exports.push([module.i, ".hidden {\n  display: none; }\n\nhtml, body {\n  margin: 0;\n  width: 100%;\n  height: 100%;\n  font-family: \"Proxima Nova\", \"Open Sans\", \"Helvetica\", sans-serif;\n  overflow-x: hidden; }\n\n* {\n  box-sizing: border-box !important; }\n\n.align-center {\n  text-align: center; }\n", ""]);
+exports.push([module.i, ".hidden {\n  display: none; }\n\nhtml, body {\n  margin: 0;\n  width: 100%;\n  height: 100%;\n  font-family: \"Proxima Nova\", \"Open Sans\", \"Helvetica\", sans-serif;\n  overflow-x: hidden; }\n\n* {\n  box-sizing: border-box !important; }\n\n.align-center {\n  text-align: center; }\n\n.button--submit {\n  border: 1px solid #979797;\n  border-radius: 3px;\n  padding: 15px;\n  cursor: pointer;\n  display: inline-block;\n  background: #01D4FB;\n  color: #fff;\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);\n  font-size: 18px; }\n  .button--submit:hover {\n    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);\n    background: #1CDCFF;\n    transition: 0.1s; }\n  .button--submit:active {\n    box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.1);\n    background: #01D4FB; }\n", ""]);
 
 // exports
 
@@ -22792,20 +22792,20 @@ var Question = function (_Component) {
           this.props.data.text
         ),
         _react2.default.createElement(
-          'form',
-          null,
+          'div',
+          { className: 'question__choices' },
           Object.keys(this.props.data.choices).map(function (choice) {
             return _react2.default.createElement(
               'label',
-              { key: _this2.props.data.id + '-' + choice },
-              _this2.props.data.choices[choice],
-              _react2.default.createElement('input', { type: 'radio', name: 'question', value: choice, onChange: _this2.handleSelect })
+              { className: 'question__choice', key: _this2.props.data.id + '-' + choice },
+              _react2.default.createElement('input', { type: 'radio', name: 'question', value: choice, onChange: _this2.handleSelect }),
+              _this2.props.data.choices[choice]
             );
           })
         ),
         _react2.default.createElement(
           'div',
-          { className: 'submit_button', onClick: this.handleSubmit },
+          { className: 'button--submit', onClick: this.handleSubmit },
           'Submit'
         )
       );
@@ -22924,7 +22924,7 @@ exports = module.exports = __webpack_require__(84)();
 
 
 // module
-exports.push([module.i, ".progress_bar {\n  display: flex;\n  align-items: center; }\n  .progress_bar__text {\n    margin-right: 10px; }\n  .progress_bar__meter {\n    flex: 1;\n    border-radius: 7px;\n    height: 15px;\n    border: 1px solid #979797;\n    overflow: hidden; }\n    .progress_bar__meter__fill {\n      background: #01D4FB;\n      height: 100%;\n      transition: 0.8s ease; }\n", ""]);
+exports.push([module.i, ".hidden {\n  display: none; }\n\n.progress_bar {\n  display: flex;\n  align-items: center;\n  margin-bottom: 15px; }\n  .progress_bar__text {\n    margin-right: 10px;\n    font-size: 14px; }\n  .progress_bar__meter {\n    flex: 1;\n    border-radius: 7px;\n    height: 15px;\n    border: 1px solid #979797;\n    overflow: hidden; }\n    .progress_bar__meter__fill {\n      background: #01D4FB;\n      height: 100%;\n      transition: 0.8s ease; }\n", ""]);
 
 // exports
 
@@ -22938,7 +22938,7 @@ exports = module.exports = __webpack_require__(84)();
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".question__choice {\n  border-radius: 3px;\n  border: 1px solid #979797;\n  padding: 15px;\n  display: block;\n  cursor: pointer;\n  margin-bottom: 5px; }\n\n.question__choices {\n  width: 50%; }\n", ""]);
 
 // exports
 
@@ -22952,7 +22952,7 @@ exports = module.exports = __webpack_require__(84)();
 
 
 // module
-exports.push([module.i, ".quiz {\n  background: #f9f9f9;\n  border-radius: 8px; }\n", ""]);
+exports.push([module.i, ".quiz {\n  background: #f9f9f9;\n  border-radius: 8px;\n  padding: 15px; }\n", ""]);
 
 // exports
 
